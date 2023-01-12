@@ -3,68 +3,101 @@
   --tablet-slider-height: 50vh;
   --lg-slider-height: 33vh;
   --lg-hero-height: 67vh;
+  --footer-height: 100px;
 }
 
 .hero {
   display: flex;
   flex-direction: column;
-  height: var(--mobile-slider-height);
-  border: 2px, solid pink;
-  background-color: aquamarine;
+  height: auto;
   position: relative;
-  background: linear-gradient(
-    rgba(0, 0, 0, 0) 25%,
-
-    rgba(34, 34, 34, 1) 95%
-  );
 }
 @media only screen and (min-width: 650px) {
   .hero {
-    height: var(--tablet-slider-height);
+    height: calc((var(--tablet-slider-height)) - (var(--footer-height)));
     flex-direction: row;
   }
 }
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1200px) {
   .hero {
-    height: var(--lg-hero-height);
+    height: calc((var(--lg-hero-height)) - (var(--footer-height)));
   }
 }
 
-.hero .overlay {
+.hero-boxes .overlay {
   position: absolute;
   height: 100%;
-  width: 100%;
-  background: linear-gradient(
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(0, 0, 0, 0) 25%,
-    rgba(0, 0, 0, 0) 75%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-  z-index: 100;
+  width: 20%;
+  background: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%);
+  z-index: 1;
+  mix-blend-mode: saturation;
 }
 
 .hero-boxes {
   width: 100%;
+  height: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)); */
-}
-
-.hero-boxes.expand {
-  width: 100%;
-  height: 90%;
 }
 
 @media only screen and (min-width: 650px) {
-  .hero-boxes.expand {
+  .hero-boxes {
+    height: 100%;
+  }
+}
+
+.hero-boxes h1 {
+  position: relative;
+  z-index: 10;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  max-width: 50vw;
+  transition: ease-in-out 0.5sec;
+}
+
+.hero-boxes p {
+  display: none;
+  width: 90%;
+  max-width: 50vw;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-boxes.expand,
+.hero-boxes.expand .overlay {
+  width: 100%;
+  height: 20%;
+}
+
+@media only screen and (min-width: 650px) {
+  .hero-boxes.expand,
+  .hero-boxes.expand .overlay {
     width: 90%;
     height: 100%;
   }
 }
 
-.hero-boxes.expand .hero-bg {
+.hero-boxes.expand.mobile {
+  width: 100%;
+  height: 100vh;
+}
+
+.hero-boxes.expand h1 {
+  font-size: 3rem;
+  width: 90%;
+}
+
+.hero-boxes.expand p {
+  display: block;
+  font-size: 1.7rem;
+  color: #b5b4b4;
+  font-weight: 400;
+}
+
+/* .hero-boxes.expand .hero-bg {
   width: 90%;
   left: 0;
   bottom: 0;
@@ -90,8 +123,8 @@
     padding-left: 20rem;
     transform-origin: 0 100%;
   }
-}
-
+} */
+/* 
 .hero-boxes .hero-bg::before {
   content: "";
   width: 100%;
@@ -102,13 +135,14 @@
   background-color: inherit;
   pointer-events: none;
   transform: skewX(10deg);
-}
-
+} */
+/* 
 .hero-boxes.expand.hero-box-one {
   background-color: #ff0077;
 }
 .hero-boxes.expand.hero-box-two {
-  background-color: #0033ff;
+  background-color: rgba(0, 51, 255, 0.42);
+  mix-blend-mode: multiply;
 }
 .hero-boxes.expand.hero-box-three {
   background-color: #00ff44;
@@ -118,21 +152,57 @@
 }
 .hero-boxes.expand.hero-box-five {
   background-color: #8000ff;
-}
+} */
 
 .hero-boxes.collapse {
   position: relative;
   width: 100%;
-  height: 2.5%;
+  height: 5%;
   z-index: 10;
-  background: linear-gradient(90deg, #343434 90%, rgb(0, 0, 0));
+  background: linear-gradient(rgb(52, 52, 52) 90%, rgb(0, 0, 0));
+  transition: ease-in-out 0.2s;
 }
 
 @media only screen and (min-width: 650px) {
   .hero-boxes.collapse {
+    width: 5%;
+    height: 100%;
+  }
+
+  .hero-boxes.collapse .overlay {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .hero-boxes.collapse {
     width: 2.5%;
     height: 100%;
   }
+}
+
+.hero-boxes.collapse.hero-box-one,
+.hero-boxes.collapse.hero-box-two,
+.hero-boxes.collapse.hero-box-three,
+.hero-boxes.collapse.hero-box-four,
+.hero-boxes.collapse.hero-box-five {
+  background: linear-gradient(
+    90deg,
+    rgb(66, 66, 66) 0%,
+    rgb(79, 79, 79) 10%,
+    rgb(66, 66, 66) 15%,
+    rgb(66, 66, 66) 70%,
+    rgba(52, 52, 52, 1) 90%,
+    rgba(52, 52, 52, 1) 95%,
+    rgb(33, 33, 33)
+  );
+  background: linear-gradient(
+    90deg,
+    rgb(66, 66, 66) 0%,
+
+    rgba(52, 52, 52, 1) 95%,
+    rgb(33, 33, 33)
+  );
 }
 
 .hero-boxes.collapse p {
@@ -151,18 +221,32 @@
   }
 }
 
-/* .hero-boxes.collapse.hero-box-one {
-  background-color: #ff0077;
+.hero-boxes.hero-box-one {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://www.clubhousebarandbistro.com/gallery_photos/gallery_img_16.png")
+      75% 50%;
+  background-size: cover;
+  background-blend-mode: multiply;
 }
-.hero-boxes.collapse.hero-box-two {
-  background-color: #0033ff;
+
+.hero-boxes.hero-box-one::before {
+  background: linear-gradient(rgba(0, 255, 30, 0.8), rgba(255, 0, 119, 8));
 }
-.hero-boxes.collapse.hero-box-three {
-  background-color: #00ff44;
+
+.hero-boxes.hero-box-two {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fcandiaoaks.com%2Fwp-content%2Fuploads%2F2016%2F07%2Ftap.jpg&f=1&nofb=1&ipt=d284f6e677f4c9c6e6a25c9f5b04ae26d9856eb8447eae0b5c4a7bcd611047e9&ipo=images")
+      60% 45%;
+  /* background-position: 50% 50%; */
+  background-size: cover;
+  background-blend-mode: multiply;
 }
-.hero-boxes.expand.hero-box-four {
-  background-color: #ff4e00;
+.hero-boxes.hero-box-three {
+  background-color: rgba(0, 255, 68, 0.5);
 }
-.hero-boxes.collapse.hero-box-five {
-  background-color: #8000ff;
-} */
+.hero-boxes.hero-box-four {
+  background-color: rgba(255, 77, 0, 0.5);
+}
+.hero-boxes.hero-box-five {
+  background-color: rgba(128, 0, 255, 0.5);
+}
