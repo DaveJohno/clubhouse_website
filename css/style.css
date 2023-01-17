@@ -26,7 +26,9 @@ body {
   height: 100vh;
   color: white;
   font-family: "Noto Serif", serif;
-  /* overflow-x: hidden; */
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
 }
 
 section.site-container {
