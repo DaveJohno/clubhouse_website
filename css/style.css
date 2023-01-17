@@ -38,6 +38,8 @@ section.site-container {
   /* max-width: 1920px; */
   /* background-color: aqua; */
   position: relative;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .clubhouse-header {
