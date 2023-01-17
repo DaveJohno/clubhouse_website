@@ -125,34 +125,47 @@ trail.forEach((cur) => cur.addEventListener("click", (ev) => clickCheck(ev)));
 
 // Mobile touch Slide Section
 const touchSlide = (() => {
-  let start, move, change, sliderWidth;
+  let start, move, change, sliderWidth, sliderHeight;
 
   // Do this on initial touch on screen
   slider.addEventListener("touchstart", (e) => {
+    console.log(e.touches[0], sliderHeight);
     // get the touche position of X on the screen
-    start = e.touches[0].clientX;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
     // (each slide with) the width of the slider container divided by the number of slides
     sliderWidth = slider.clientWidth / trail.length;
+
+    sliderHeight = slider.clientHeight / 100;
   });
 
-  // Do this on touchDrag on screen
-  slider.addEventListener("touchmove", (e) => {
-    // prevent default function
-    e.preventDefault();
-    // get the touche position of X on the screen when dragging stops
-    move = e.touches[0].clientX;
-    // Subtract initial position from end position and save to change variabla
-    change = start - move;
-  });
+  // // Do this on touchDrag on screen
+  // slider.addEventListener("touchmove", (e) => {
+  //   // prevent default function
+  //   e.preventDefault();
 
-  const mobile = (e) => {
-    // if change is greater than a quarter of sliderWidth, next else Do NOTHING
-    change > sliderWidth / 4 ? slide("increase") : null;
-    // if change * -1 is greater than a quarter of sliderWidth, prev else Do NOTHING
-    change * -1 > sliderWidth / 4 ? slide("decrease") : null;
-    // reset all variable to 0
-    [start, move, change, sliderWidth] = [0, 0, 0, 0];
-  };
-  // call mobile on touch end
-  slider.addEventListener("touchend", mobile);
+  //   // get the touche position of X on the screen when dragging stops
+  //   moveX = e.touches[0].clientX;
+  //   moveY = e.touches[0].clientY;
+  //   // Subtract initial position from end position and save to change variabla
+  //   changeX = startX - moveX;
+  //   changeY = startY - moveY;
+
+  //   console.log(changeY);
+
+  //   if (changeY > 10) {
+  //     window.scrollBy(10, 10);
+  //   }
+  // });
+
+  // const mobile = (e) => {
+  //   // if change is greater than a quarter of sliderWidth, next else Do NOTHING
+  //   changeX > sliderWidth / 4 ? slide("increase") : null;
+  //   // if change * -1 is greater than a quarter of sliderWidth, prev else Do NOTHING
+  //   changeX * -1 > sliderWidth / 4 ? slide("decrease") : null;
+  //   // reset all variable to 0
+  //   [startX, moveX, changeX, sliderWidth] = [0, 0, 0, 0];
+  // };
+  // // call mobile on touch end
+  // slider.addEventListener("touchend", mobile);
 })();
